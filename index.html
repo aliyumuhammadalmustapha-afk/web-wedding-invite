@@ -1,0 +1,2270 @@
+<!doctype html>
+<!--
+  Royal Wedding Invitation: Al-Amin Kabir Usman & Aisha Muhammad Abdullah
+  Date: Friday, 25th December 2026 | Katsina, Nigeria
+  NOTE: WebGL video textures require a local HTTP server due to browser security restrictions on file:// URLs.
+  Run via: python -m http.server 8080 (or npx serve) and open http://localhost:8080
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#060E1F">
+<meta name="description" content="The royal wedding invitation for Al-Amin Kabir Usman and Aisha Muhammad Abdullah. Friday, 25th December 2026, Katsina, Nigeria.">
+<title>Al-Amin &amp; Aisha — A Royal Wedding Invitation</title>
+
+<!-- Google Fonts: single unified request -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Figtree:wght@400;500;600&family=Great+Vibes&family=Noto+Naskh+Arabic:wght@400;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+<!-- Tailwind Play CDN & configuration -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        navy: '#0B1D3A',
+        gold: '#C9A227',
+        offwhite: '#F8F7F4',
+        emerald: '#16A34A',
+        crimson: '#DC2626',
+        ink: '#060E1F',
+        goldlight: '#F1D77A',
+        ivory: '#FBF6E9',
+        bronze: '#8A6A12'
+      },
+      fontFamily: {
+        cinzel: ['Cinzel', 'serif'],
+        cormorant: ['Cormorant Garamond', 'Georgia', 'serif'],
+        script: ['Pinyon Script', 'cursive'],
+        greatvibes: ['Great Vibes', 'cursive'],
+        alex: ['Alex Brush', 'cursive'],
+        amiri: ['Amiri', 'serif'],
+        naskh: ['Noto Naskh Arabic', 'Amiri', 'serif'],
+        figtree: ['Figtree', 'sans-serif']
+      }
+    }
+  }
+};
+</script>
+
+<!-- Libraries: GSAP 3.12.5 suite + Three.js r128 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<style>
+:root {
+  --navy: #0B1D3A;
+  --ink: #060E1F;
+  --gold: #C9A227;
+  --goldlight: #F1D77A;
+  --bronze: #8A6A12;
+  --ivory: #FBF6E9;
+  --offwhite: #F8F7F4;
+  --emerald: #16A34A;
+  --crimson: #DC2626;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: var(--ink);
+  color: var(--ivory);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 19px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
+  display: none;
+}
+
+body.locked {
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* Metallic Gold text shimmer */
+.font-alex { font-family: 'Alex Brush', cursive; }
+.font-vibes { font-family: 'Great Vibes', cursive; }
+
+.text-gold-metal {
+  background: linear-gradient(110deg, #8A6A12 0%, #C9A227 25%, #F1D77A 50%, #C9A227 75%, #8A6A12 100%);
+  background-size: 240% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: goldShimmer 10s linear infinite;
+}
+
+@keyframes goldShimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 240% center; }
+}
+
+/* Gold borders with subtle inner glow */
+.gold-border {
+  border: 1px solid rgba(201, 162, 39, 0.45);
+  box-shadow: inset 0 0 20px rgba(201, 162, 39, 0.1), 0 16px 50px rgba(0, 0, 0, 0.6);
+}
+
+.gold-border-light {
+  border: 1px solid rgba(138, 106, 18, 0.35);
+  box-shadow: inset 0 0 15px rgba(201, 162, 39, 0.08), 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+/* Glassmorphism */
+.glass-panel {
+  background: rgba(11, 29, 58, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(241, 215, 122, 0.28);
+}
+
+.glass-panel-ivory {
+  background: rgba(251, 246, 233, 0.9);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(201, 162, 39, 0.35);
+}
+
+/* Sections global structure */
+.royal-section {
+  position: relative;
+  min-height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Soft section bridge gradients */
+.section-bridge-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, var(--ink));
+  pointer-events: none;
+  z-index: 15;
+}
+
+/* Film grain overlay */
+.film-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.1;
+  z-index: 25;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.3'/%3E%3C/svg%3E");
+}
+
+/* 9:16 Centred stage shell for wide screens */
+.stage-shell {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+}
+
+.stage-shell-backdrop {
+  position: absolute;
+  inset: -10%;
+  background-position: center;
+  background-size: cover;
+  filter: blur(36px) brightness(0.25);
+  transform: scale(1.15);
+}
+
+.stage-viewport {
+  position: relative;
+  height: 100dvh;
+  aspect-ratio: 9/16;
+  max-width: 100%;
+  overflow: hidden;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.9);
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+
+@media (min-width: 768px) {
+  .stage-viewport {
+    width: 100%;
+    aspect-ratio: auto;
+  }
+}
+
+/* Door leaf splitting */
+.door-leaf {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 30;
+  backface-visibility: hidden;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.door-leaf img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.door-left {
+  clip-path: inset(0 50% 0 0);
+  transform-origin: left center;
+}
+
+.door-right {
+  clip-path: inset(0 0 0 50%);
+  transform-origin: right center;
+}
+
+/* Door seam line glow */
+.door-seam-glow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(to bottom, transparent 5%, #F1D77A 30%, #FFF 50%, #F1D77A 70%, transparent 95%);
+  box-shadow: 0 0 15px #F1D77A, 0 0 35px #C9A227;
+  z-index: 32;
+  pointer-events: none;
+  animation: seamPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes seamPulse {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 0.95; }
+}
+
+/* Curtains splitting */
+.curtain-leaf {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  z-index: 30;
+  backface-visibility: hidden;
+  will-change: transform;
+  cursor: pointer;
+  display: block !important;
+}
+
+.curtain-leaf img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.curtain-left {
+  left: 0;
+  width: 50% !important;
+  height: 100%;
+  position: absolute;
+  z-index: 30;
+}
+
+.curtain-right {
+  right: 0;
+  width: 50% !important;
+  height: 100%;
+  position: absolute;
+  z-index: 30;
+}
+
+/* Fixed progress bar */
+.progress-bar-wrap {
+  position: fixed;
+  right: 12px;
+  top: 20vh;
+  height: 60vh;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.12);
+  z-index: 90;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
+}
+
+.progress-bar-fill {
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(to bottom, var(--goldlight), var(--gold));
+  box-shadow: 0 0 10px var(--goldlight);
+}
+
+body.open .progress-bar-wrap {
+  opacity: 1;
+}
+
+/* Audio toggle */
+.audio-toggle-btn {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(6, 14, 31, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(241, 215, 122, 0.4);
+  color: var(--goldlight);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 95;
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.6s ease, transform 0.3s ease, border-color 0.3s ease;
+}
+
+.audio-toggle-btn.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.audio-bars {
+  display: flex;
+  gap: 3px;
+  align-items: flex-end;
+  height: 18px;
+}
+
+.audio-bar {
+  width: 3px;
+  background: var(--goldlight);
+  border-radius: 1px;
+}
+
+.audio-playing .audio-bar:nth-child(1) { animation: barDance 1.2s ease-in-out infinite alternate; }
+.audio-playing .audio-bar:nth-child(2) { animation: barDance 0.8s ease-in-out 0.2s infinite alternate; }
+.audio-playing .audio-bar:nth-child(3) { animation: barDance 1.0s ease-in-out 0.4s infinite alternate; }
+
+@keyframes barDance {
+  0% { height: 4px; }
+  100% { height: 18px; }
+}
+
+/* Focus visible styling */
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--goldlight) !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 15px rgba(241, 215, 122, 0.6) !important;
+}
+
+/* Toast */
+.toast-notice {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(140%);
+  padding: 12px 24px;
+  border-radius: 9999px;
+  background: rgba(11, 29, 58, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--goldlight);
+  color: var(--ivory);
+  font-family: 'Figtree', sans-serif;
+  font-size: 14px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(201, 162, 39, 0.3);
+  z-index: 100;
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.toast-notice.show {
+  transform: translateX(-50%) translateY(0%);
+  opacity: 1;
+}
+
+/* Bobbing indicator */
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+.animate-bob {
+  animation: bob 2s ease-in-out infinite;
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .door-leaf { display: none !important; }
+  .curtain-leaf { display: block !important; }
+  .door-seam-glow { display: none !important; }
+  #dustCanvas { display: none !important; }
+}
+</style>
+</head>
+
+<body class="locked">
+
+<!-- Floating global gold dust canvas -->
+<canvas id="dustCanvas" class="fixed inset-0 w-full h-full pointer-events-none z-20" aria-hidden="true"></canvas>
+
+<!-- Fixed scroll progress bar -->
+<div class="progress-bar-wrap" aria-hidden="true">
+  <div id="progressBar" class="progress-bar-fill"></div>
+</div>
+
+<!-- Floating audio controller -->
+<button id="audioToggle" class="audio-toggle-btn" aria-label="Play royal wedding music" aria-pressed="false">
+  <div class="audio-bars" aria-hidden="true">
+    <div class="audio-bar" style="height: 6px;"></div>
+    <div class="audio-bar" style="height: 14px;"></div>
+    <div class="audio-bar" style="height: 8px;"></div>
+  </div>
+</button>
+
+<!-- ARIA toast notice -->
+<div id="toast" class="toast-notice" role="status" aria-live="polite"></div>
+
+<!-- ============================================================== -->
+<!-- MAIN NARRATIVE SCENARIO                                        -->
+<!-- ============================================================== -->
+<main id="mainContent">
+
+  <!-- ============================================================ -->
+  <!-- 4.1 SECTION 1 - THE GRAND ROYAL ENTRANCE                    -->
+  <!-- ============================================================ -->
+  <section id="entrance" class="royal-section h-screen cursor-pointer select-none" aria-label="Grand Royal Entrance">
+    <div class="stage-shell">
+      <div class="stage-shell-backdrop" style="background-image: url('./assets/images/royal-door.webp');"></div>
+      
+      <div id="entranceStage" class="stage-viewport relative">
+        <!-- Interior Palace Hall Layer (Static Image) -->
+        <div id="palaceHallWrapper" class="absolute inset-0 w-full h-full z-0 overflow-hidden bg-ink">
+          <img id="palaceWallImg" src="./assets/images/wallroyal.jfif" class="absolute inset-0 w-full h-full object-cover filter brightness-[0.9] contrast-[1.1]" alt="Royal Palace Interior Wall">
+          <div class="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-ink/60 pointer-events-none"></div>
+        </div>
+
+        <!-- Interior Calligraphy and Couple Name Reveal (Adjusted vertical position for the inner frame) -->
+        <div id="entranceCopy" class="absolute top-[48%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-[80%] max-w-[260px] flex flex-col items-center justify-center text-center px-4 pointer-events-none opacity-100">
+          
+          <!-- Bismillah -->
+          <div class="mb-4 w-full flex justify-center">
+            <p id="bismillahText" class="font-amiri text-lg md:text-xl tracking-widest uppercase" lang="ar" dir="rtl" style="color: #1A1A1A; font-weight: 700;">
+              بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+            </p>
+          </div>
+          
+          <!-- Couple Names -->
+          <div id="monogram" class="flex flex-col items-center justify-center w-full gap-1">
+            <h1 class="font-alex text-3xl md:text-4xl text-[#1A1A1A] leading-tight font-bold">
+              Al-Amin
+            </h1>
+            <span class="font-cinzel text-sm text-[#1A1A1A] uppercase tracking-[0.3em] my-1 font-bold">and</span>
+            <h1 class="font-alex text-3xl md:text-4xl text-[#1A1A1A] leading-tight font-bold">
+              Aisha
+            </h1>
+          </div>
+        </div>
+
+        <!-- Bobbing scroll prompt anchored near bottom floor of the palace hall -->
+        <div id="scrollPrompt" class="absolute bottom-5 sm:bottom-7 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 opacity-0 pointer-events-none animate-bob">
+          <span class="font-cinzel text-[10px] tracking-[0.25em] uppercase text-goldlight/80 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">Scroll</span>
+          <svg class="w-3.5 h-3.5 text-goldlight filter drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </div>
+
+        <!-- Royal Door Split: two full-stage copies of royal-door.webp -->
+        <div id="doorLeft" class="door-leaf door-left">
+          <img src="./assets/images/royal-door.webp" alt="" draggable="false">
+        </div>
+        <div id="doorRight" class="door-leaf door-right">
+          <img src="./assets/images/royal-door.webp" alt="" draggable="false">
+        </div>
+
+        <!-- Vertical seam light line (subtle glow, no text) -->
+        <div id="doorSeam" class="door-seam-glow"></div>
+
+        <!-- Invisible tap detector over entire stage -->
+        <div id="entranceTapZone" class="absolute inset-0" style="z-index: 9999; cursor: pointer;" role="button" aria-label="Enter the invitation"></div>
+      </div>
+    </div>
+    <div class="film-grain"></div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 4.2 SECTION 2 - THE ANTICIPATION / COUNTDOWN                 -->
+  <!-- ============================================================ -->
+  <section id="countdown" class="royal-section bg-ivory text-ink py-20 px-4 md:px-8">
+    <div class="max-w-4xl w-full mx-auto text-center relative z-10">
+      
+      <!-- Corner Arabesque SVG Borders -->
+      <div class="absolute -top-6 -left-6 w-16 h-16 text-bronze/40 pointer-events-none" aria-hidden="true">
+        <svg viewBox="0 0 100 100" fill="currentColor">
+          <path d="M0,0 L100,0 C60,0 0,60 0,100 Z" opacity="0.15"/>
+          <path d="M5,5 L60,5 C40,5 5,40 5,60 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="absolute -top-6 -right-6 w-16 h-16 text-bronze/40 pointer-events-none rotate-90" aria-hidden="true">
+        <svg viewBox="0 0 100 100" fill="currentColor">
+          <path d="M0,0 L100,0 C60,0 0,60 0,100 Z" opacity="0.15"/>
+          <path d="M5,5 L60,5 C40,5 5,40 5,60 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </div>
+
+      <p class="font-cinzel text-xs md:text-sm tracking-[0.3em] uppercase text-bronze mb-2">The Anticipation</p>
+      <h2 class="font-cinzel text-3xl md:text-5xl font-bold tracking-wide text-ink mb-2">The Journey Begins In</h2>
+      <p class="font-script text-2xl md:text-4xl text-bronze mb-10">…the wedding Fatiha of Al-Amin &amp; Aisha</p>
+
+      <!-- 4-Column Plaque Grid -->
+      <div id="countdownGrid" class="grid grid-cols-4 gap-3 sm:gap-6 max-w-2xl mx-auto my-8">
+        <div class="glass-panel-ivory rounded-lg p-2 sm:p-5 text-center shadow-lg transform transition duration-300 hover:scale-105">
+          <span id="countDays" class="font-cinzel text-xl sm:text-3xl md:text-6xl font-light text-ink block">00</span>
+          <span class="font-cinzel text-[9px] sm:text-xs tracking-[0.1em] uppercase text-bronze mt-1 block font-semibold">Days</span>
+        </div>
+        <div class="glass-panel-ivory rounded-lg p-2 sm:p-5 text-center shadow-lg transform transition duration-300 hover:scale-105">
+          <span id="countHours" class="font-cinzel text-xl sm:text-3xl md:text-6xl font-light text-ink block">00</span>
+          <span class="font-cinzel text-[9px] sm:text-xs tracking-[0.1em] uppercase text-bronze mt-1 block font-semibold">Hours</span>
+        </div>
+        <div class="glass-panel-ivory rounded-lg p-2 sm:p-5 text-center shadow-lg transform transition duration-300 hover:scale-105">
+          <span id="countMinutes" class="font-cinzel text-xl sm:text-3xl md:text-6xl font-light text-ink block">00</span>
+          <span class="font-cinzel text-[9px] sm:text-xs tracking-[0.1em] uppercase text-bronze mt-1 block font-semibold">Mins</span>
+        </div>
+        <div class="glass-panel-ivory rounded-lg p-2 sm:p-5 text-center shadow-lg transform transition duration-300 hover:scale-105">
+          <span id="countSeconds" class="font-cinzel text-xl sm:text-3xl md:text-6xl font-light text-ink block">00</span>
+          <span class="font-cinzel text-[9px] sm:text-xs tracking-[0.1em] uppercase text-bronze mt-1 block font-semibold">Secs</span>
+        </div>
+      </div>
+
+      <p id="countdownNote" class="font-cinzel text-xs tracking-widest text-bronze uppercase mt-6">
+        Friday, 25 December 2026 · 1:30 PM WAT (Africa/Lagos)
+      </p>
+    </div>
+    <div class="section-bridge-bottom"></div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 4.3 SECTION 3 - THE BOND & FORMAL INVITATION                 -->
+  <!-- ============================================================ -->
+  <section id="bond" class="royal-section text-center relative py-28 px-6">
+    <!-- Looping video background with dark overlay -->
+    <div class="absolute inset-0 w-full h-full overflow-hidden z-0">
+      <video id="handVideo" class="w-full h-full object-cover filter brightness-50 contrast-110" src="./assets/videos/hand-catching.webm" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+      <div class="absolute inset-0 bg-gradient-to-b from-ink via-ink/65 to-ink"></div>
+    </div>
+
+    <div class="inner max-w-3xl mx-auto relative z-10 flex flex-col items-center">
+      <p class="bond-line font-cinzel text-xs sm:text-sm tracking-[0.3em] uppercase text-goldlight mb-6">
+        With the blessings of Almighty Allah
+      </p>
+
+      <div class="bond-line my-3">
+        <h3 class="font-cormorant italic text-3xl sm:text-4xl md:text-5xl font-light text-ivory">Alh. Kabir Usman</h3>
+        <p class="font-cormorant italic text-lg sm:text-xl text-goldlight/90 my-2">&amp;</p>
+        <h3 class="font-cormorant italic text-3xl sm:text-4xl md:text-5xl font-light text-ivory">Alh. Muhammad Abdullah</h3>
+      </div>
+
+      <p class="bond-line font-cormorant italic text-lg sm:text-2xl text-goldlight/90 my-4">
+        together with their families
+      </p>
+
+      <!-- Ornamental gold divider -->
+      <div class="bond-line my-4 w-48 flex items-center justify-center gap-3 text-goldlight" aria-hidden="true">
+        <span class="h-[1px] w-full bg-gradient-to-r from-transparent to-gold"></span>
+        <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+          <polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/>
+        </svg>
+        <span class="h-[1px] w-full bg-gradient-to-l from-transparent to-gold"></span>
+      </div>
+
+      <p class="bond-line font-cormorant text-xl sm:text-2xl md:text-3xl text-ivory/95 max-w-2xl leading-relaxed">
+        cordially invite you to the wedding Fatiha of their son and daughter
+      </p>
+    </div>
+    <div class="section-bridge-bottom"></div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 4.4 SECTION 3B - THE FOUNTAIN MOMENT (SEPARATE GARDEN)       -->
+  <!-- ============================================================ -->
+  <section id="fountain" class="royal-section py-24 px-6 relative overflow-hidden bg-[#FBF6E9] text-ink" aria-label="The Royal Garden Fountain">
+    <div class="inner max-w-4xl w-full mx-auto flex flex-col items-center relative z-10">
+      
+      <!-- Fountain Video Section (Hero Style - Taller) -->
+      <div class="w-full max-w-4xl rounded-none overflow-hidden relative shadow-[0_20px_60px_rgba(0,0,0,0.15)] aspect-[4/5] sm:aspect-[16/9] mb-12">
+        <video class="w-full h-full object-cover" src="./assets/videos/waterfountain.mp4" autoplay muted loop playsinline aria-hidden="true"></video>
+        <div class="absolute inset-0 bg-black/20 pointer-events-none"></div>
+      </div>
+
+      <!-- Text placed cleanly BELOW the water fountain visual -->
+      <div class="px-8 py-6 rounded-2xl max-w-xl text-center">
+        <p class="font-cinzel text-xs tracking-[0.3em] uppercase text-bronze mb-2">Barakallahu lakuma</p>
+        <h2 class="font-script text-3xl sm:text-5xl text-bronze leading-tight">
+          From two hearts, one flowing blessing
+        </h2>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 4.5 SECTION 4 - THE ROYAL UNVEILING / CURTAINS (SEPARATE)    -->
+  <!-- ============================================================ -->
+  <section id="unveiling" class="royal-section h-screen w-full relative overflow-hidden bg-ink" aria-label="The Royal Curtains Unveiling">
+    <div id="curtainStage" class="stage-viewport relative flex items-center justify-center cursor-pointer select-none">
+      
+      <!-- Reveal Content: Names behind the curtains -->
+      <div id="namesContent" class="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-6 pointer-events-none opacity-0 transition-opacity duration-1000">
+        <p class="font-cinzel text-xs tracking-[0.4em] uppercase text-white/80 mb-6 font-semibold">The Royal Union</p>
+        <h1 class="font-cinzel text-3xl md:text-5xl text-white font-bold leading-tight mb-3 tracking-wide">
+          Al-Amin Kabir Usman
+        </h1>
+        <div class="flex items-center justify-center gap-4 my-4 text-[#C5A059]">
+          <span class="w-16 h-[1px] bg-gradient-to-r from-transparent to-[#C5A059]"></span>
+          <span class="font-serif italic text-2xl">&</span>
+          <span class="w-16 h-[1px] bg-gradient-to-l from-transparent to-[#C5A059]"></span>
+        </div>
+        <h1 class="font-cinzel text-3xl md:text-5xl text-white font-bold leading-tight mb-8 tracking-wide">
+          Aisha Muhammad Abdullah
+        </h1>
+        <p class="font-cinzel text-sm tracking-widest text-white/70 uppercase">
+          Friday · 25th December 2026
+        </p>
+      </div>
+
+      <!-- Curtains Split -->
+      <div id="curtainLeft" class="curtain-leaf curtain-left" title="Touch curtains to open">
+        <video class="w-full h-full object-cover" src="./assets/videos/curtains.mp4" muted loop playsinline></video>
+      </div>
+      <div id="curtainRight" class="curtain-leaf curtain-right" title="Touch curtains to open">
+        <video class="w-full h-full object-cover" src="./assets/videos/curtains.mp4" muted loop playsinline></video>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 4.6 SECTION 5 - TWO LIVES, ONE PROMISE                       -->
+  <!-- ============================================================ -->
+  <section id="rings" class="royal-section py-28 px-6 bg-[#FBF6E9] text-ink text-center">
+    <div class="inner max-w-4xl mx-auto flex flex-col items-center relative z-10">
+      
+      <p class="font-cinzel text-xs sm:text-sm tracking-[0.3em] uppercase text-bronze mb-3">Sacred Covenant</p>
+      <h2 class="font-cinzel text-3xl sm:text-5xl md:text-6xl text-bronze font-medium mb-12">
+        Two Lives, One Promise
+      </h2>
+
+      <!-- Prayer in Arabic and English translation -->
+      <div class="max-w-2xl mt-8">
+        <p class="font-amiri text-2xl sm:text-3xl md:text-4xl text-bronze/90 leading-relaxed mb-6" lang="ar" dir="rtl">
+          بَارَكَ ٱللَّهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
+        </p>
+        <p class="font-cormorant italic text-lg sm:text-2xl text-bronze/80 leading-relaxed mb-6">
+          “May Allah bless you both, shower His blessings upon you, and unite you in goodness.”
+        </p>
+        <p class="font-cinzel text-xs tracking-[0.3em] uppercase text-bronze font-semibold">
+          Ameen
+        </p>
+      </div>
+
+    </div>
+    <div class="section-bridge-bottom"></div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 4.7 SECTION 6 - THE DOVES & 'EVENTS' IN INK                  -->
+  <!-- ============================================================ -->
+  <section id="doves" class="royal-section py-28 px-6 bg-gradient-to-b from-ink via-[#081730] to-ink text-center relative overflow-hidden" aria-label="Celebration Events Heading">
+    <!-- Flying Doves Chroma-Key Canvas -->
+    <div class="absolute inset-0 w-full h-full z-0 pointer-events-none flex items-center justify-center">
+      <video id="dovesVideo" class="hidden" src="./assets/videos/flying-doves.webm" muted loop playsinline preload="metadata" crossOrigin="anonymous"></video>
+      <canvas id="dovesCanvas" class="w-full h-full object-cover opacity-85" width="1280" height="720"></canvas>
+    </div>
+
+    <!-- SVG filter for wet ink bleed -->
+    <svg class="hidden" aria-hidden="true">
+      <defs>
+        <filter id="inkBleed">
+          <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </defs>
+    </svg>
+
+    <div class="inner max-w-4xl mx-auto relative z-10 flex flex-col items-center overflow-visible px-4">
+      <!-- 'Events' written in ink with generous container padding so 'E' is not clipped -->
+      <div class="relative my-4 px-12 py-4 overflow-visible">
+        <h2 id="inkEventsTitle" class="font-greatvibes text-7xl sm:text-9xl md:text-[11rem] text-gold-metal leading-tight filter drop-shadow-[0_4px_25px_rgba(201,162,39,0.35)] overflow-visible my-12" style="filter: url(#inkBleed);">
+          Events
+        </h2>
+        <div id="inkPenNib" class="absolute top-1/2 w-4 h-4 rounded-full bg-goldlight shadow-[0_0_15px_#F1D77A] transform -translate-y-1/2 opacity-0 pointer-events-none" aria-hidden="true"></div>
+      </div>
+
+      <p id="eventsSub" class="font-cinzel text-xs sm:text-sm tracking-[0.3em] uppercase text-goldlight mt-2 opacity-0">
+        The Celebrations · Five Gatherings
+      </p>
+
+      <div class="my-6 w-32 h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent" aria-hidden="true"></div>
+    </div>
+    <div class="section-bridge-bottom"></div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 4.8 SECTION 7 - EVENT 1: SA LALLE & KAMU                     -->
+  <!-- ============================================================ -->
+  <section id="henna" class="royal-section py-24 px-6 md:px-12 bg-gradient-to-b from-ink via-[#180a14] to-ink">
+    <div class="inner max-w-5xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14 items-center">
+      
+      <!-- Visual with framed parallax image -->
+      <div class="visual-panel relative rounded-2xl overflow-hidden gold-border aspect-[4/5] max-w-md mx-auto w-full group shadow-2xl">
+        <img class="visual-img w-full h-full object-cover transform scale-105 transition-transform duration-1000 ease-out" src="./assets/images/henna.webp" alt="Henna ceremony adorned hands" loading="lazy" decoding="async">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none"></div>
+      </div>
+
+      <!-- Event Details (Glass-panel removed) -->
+      <article class="p-6 sm:p-10 text-left flex flex-col justify-center">
+        <div class="flex items-center justify-between mb-2">
+          <span class="font-cinzel text-xs tracking-[0.25em] uppercase text-goldlight font-semibold">Event One</span>
+          <span class="font-script text-4xl text-gold/30">01</span>
+        </div>
+
+        <h3 class="font-cinzel text-3xl sm:text-4xl text-white mb-1 font-semibold">Sa Lalle &amp; Kamu</h3>
+        <p class="font-cormorant italic text-lg sm:text-xl text-emerald mb-4">The Prelude</p>
+        
+        <div class="h-[1px] w-24 bg-gold/40 mb-6"></div>
+
+        <div class="space-y-4 mb-8">
+          <div class="flex items-center gap-3 text-ivory/90">
+            <svg class="w-5 h-5 text-goldlight flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span class="font-cormorant text-lg sm:text-xl">Tuesday, 22nd December 2026</span>
+          </div>
+          <div class="flex items-center gap-3 text-ivory/90">
+            <svg class="w-5 h-5 text-goldlight flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="font-cormorant text-lg sm:text-xl">4:00 PM WAT</span>
+          </div>
+          <div class="flex items-center gap-3 text-ivory/90">
+            <svg class="w-5 h-5 text-goldlight flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="font-cormorant text-lg sm:text-xl font-medium text-goldlight">Munja Event, GRA, Katsina</span>
+          </div>
+        </div>
+
+        <a class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-gold text-goldlight hover:bg-gold hover:text-ink transition-colors font-cinzel text-xs tracking-widest uppercase font-semibold self-start" href="https://www.google.com/maps/search/?api=1&query=Munja+Event%2C+GRA%2C+Katsina" target="_blank" rel="noopener">
+          <span>Get Directions</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </article>
+
+    </div>
+    <div class="section-bridge-bottom"></div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 4.9 SECTION 8 - EVENT 2: THE FOOTBALL MATCH                  -->
+  <!-- ============================================================ -->
+  <section id="football" class="royal-section py-24 px-6 md:px-12 bg-gradient-to-b from-ink via-[#07161b] to-ink">
+    <div class="inner max-w-5xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14 items-center">
+      
+      <!-- Visual with stadium pitch -->
+      <div class="visual-panel relative rounded-2xl overflow-hidden gold-border aspect-[4/5] max-w-md mx-auto w-full group shadow-2xl">
+        <img class="visual-img w-full h-full object-cover transform scale-105 transition-transform duration-1000 ease-out" src="./assets/images/football-pitch.webp" alt="Timeless Arena football pitch under floodlights" loading="lazy" decoding="async">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-emerald/15 to-white/10 opacity-70 pointer-events-none" aria-hidden="true"></div>
+      </div>
+
+      <!-- Event Details (Glass-panel removed) -->
+      <article class="p-6 sm:p-10 text-left flex flex-col justify-center">
+        <div class="flex items-center justify-between mb-2">
+          <span class="font-cinzel text-xs tracking-[0.25em] uppercase text-goldlight font-semibold">Event Two</span>
+          <span class="font-script text-4xl text-gold/30">02</span>
+        </div>
+
+        <h3 class="font-cinzel text-3xl sm:text-4xl text-white mb-1 font-semibold">The Football Match</h3>
+        <p class="font-cormorant italic text-lg sm:text-xl text-emerald mb-4">Team Groom vs Team Bride</p>
+        
+        <div class="h-[1px] w-24 bg-gold/40 mb-6"></div>
+
+        <div class="space-y-4 mb-8">
+          <div class="flex items-center gap-3 text-ivory/90">
+            <svg class="w-5 h-5 text-goldlight flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span class="font-cormorant text-lg sm:text-xl">Wednesday, 23rd December 2026</span>
+          </div>
+          <div class="flex items-center gap-3 text-ivory/90">
+            <svg class="w-5 h-5 text-goldlight flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="font-cormorant text-lg sm:text-xl">8:00 PM WAT</span>
+          </div>
+          <div class="flex items-center gap-3 text-ivory/90">
+            <svg class="w-5 h-5 text-goldlight flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="font-cormorant text-lg sm:text-xl font-medium text-goldlight">Timeless Arena, GRA, Katsina</span>
+          </div>
+        </div>
+
+        <a class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-gold text-goldlight hover:bg-gold hover:text-ink transition-colors font-cinzel text-xs tracking-widest uppercase font-semibold self-start" href="https://www.google.com/maps/search/?api=1&query=Timeless+Arena%2C+GRA%2C+Katsina" target="_blank" rel="noopener">
+          <span>Get Directions</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </article>
+
+    </div>
+    <div class="section-bridge-bottom"></div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 4.10 SECTION 9 - EVENT 3: THE WEDDING DINNER                 -->
+  <!-- ============================================================ -->
+  <section id="dinner" class="royal-section py-24 px-6 md:px-12 bg-gradient-to-b from-ink via-[#1c0f18] to-ink" aria-label="Event 3: The Wedding Dinner">
+    <div class="inner max-w-5xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14 items-center">
+      
+      <!-- Real Feast Chamber Hall Image arranged beside the card -->
+      <div class="visual-panel relative rounded-2xl overflow-hidden gold-border aspect-[4/5] max-w-md mx-auto w-full group shadow-2xl">
+        <img class="visual-img w-full h-full object-cover transform scale-105 transition-transform duration-1000 ease-out" src="./assets/images/feast-chamber.webp" alt="Royal Wedding Banquet Hall at Hillside Royal Suites" loading="lazy" decoding="async">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none"></div>
+      </div>
+
+      <!-- Event Details Card -->
+      <article class="glass-panel gold-border p-6 sm:p-10 rounded-2xl text-left flex flex-col justify-center">
+        <div class="flex items-center justify-between mb-2">
+          <span class="font-cinzel text-xs tracking-[0.25em] uppercase text-goldlight font-semibold">Event Three</span>
+          <span class="font-script text-4xl text-gold/30">03</span>
+        </div>
+
+        <h3 class="font-cinzel text-3xl sm:text-4xl text-gold-metal mb-1 font-semibold">The Wedding Dinner</h3>
+        <p class="font-cormorant italic text-lg sm:text-xl text-goldlight/90 mb-4">An Evening of Elegance &amp; Royalty</p>
+        
+        <div class="h-[1px] w-24 bg-gold/40 mb-6"></div>
+
+        <div class="space-y-4 mb-8">
+          <div class="flex items-center gap-3 text-ivory/90">
+            <svg class="w-5 h-5 text-goldlight flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span class="font-cormorant text-lg sm:text-xl">Thursday, 24th December 2026</span>
+          </div>
+          <div class="flex items-center gap-3 text-ivory/90">
+            <svg class="w-5 h-5 text-goldlight flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="font-cormorant text-lg sm:text-xl">8:00 PM WAT</span>
+          </div>
+          <div class="flex items-center gap-3 text-ivory/90">
+            <svg class="w-5 h-5 text-goldlight flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="font-cormorant text-lg sm:text-xl font-medium text-goldlight">Hillside Royal Suites, GRA, Katsina</span>
+          </div>
+        </div>
+
+        <a class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-gold text-goldlight hover:bg-gold hover:text-ink transition-colors font-cinzel text-xs tracking-widest uppercase font-semibold self-start" href="https://www.google.com/maps/search/?api=1&query=Hillside+Royal+Suites%2C+GRA%2C+Katsina" target="_blank" rel="noopener">
+          <span>Get Directions</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </article>
+
+    </div>
+    <div class="section-bridge-bottom"></div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 4.11 SECTION 11 - EVENT 4: THE WEDDING FATIHA (WITH MOSQUE)  -->
+  <!-- ============================================================ -->
+  <section id="fatiha" class="royal-section py-24 px-6 md:px-12 bg-gradient-to-b from-ink via-[#061626] to-ink" aria-label="Event 4: The Wedding Fatiha">
+    <div class="inner max-w-5xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14 items-center">
+      
+      <!-- Real Grand Mosque Image (Replaced with video) -->
+      <div class="visual-panel relative rounded-2xl overflow-hidden aspect-[4/5] max-w-md mx-auto w-full group shadow-2xl">
+        <video class="w-full h-full object-cover" src="./assets/videos/flowehandling.mp4" autoplay muted loop playsinline></video>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none"></div>
+      </div>
+
+      <!-- Event Details Card (Glass-panel removed) -->
+      <article class="p-6 sm:p-10 text-left flex flex-col justify-center">
+        <div class="flex items-center justify-between mb-2">
+          <span class="font-cinzel text-xs tracking-[0.25em] uppercase text-goldlight font-semibold">Event Four</span>
+          <span class="font-script text-4xl text-gold/30">04</span>
+        </div>
+
+        <h3 class="font-cinzel text-3xl sm:text-4xl text-white mb-1 font-semibold">The Wedding Fatiha</h3>
+        <p class="font-cormorant italic text-lg sm:text-xl text-emerald mb-4">The Sacred Covenant</p>
+        
+        <div class="h-[1px] w-24 bg-gold/40 mb-6"></div>
+
+        <div class="space-y-4 mb-8">
+          <div class="flex items-center gap-3 text-ivory/90">
+            <svg class="w-5 h-5 text-goldlight flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span class="font-cormorant text-lg sm:text-xl">Friday, 25th December 2026</span>
+          </div>
+          <div class="flex items-center gap-3 text-ivory/90">
+            <svg class="w-5 h-5 text-goldlight flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="font-cormorant text-lg sm:text-xl font-medium text-goldlight">1:30 PM WAT</span>
+          </div>
+          <div class="flex items-center gap-3 text-ivory/90">
+            <svg class="w-5 h-5 text-goldlight flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="font-cormorant text-lg sm:text-xl font-medium text-goldlight">Masjid Banu Coomasie, GRA, Katsina</span>
+          </div>
+        </div>
+
+
+        <a class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-gold text-goldlight hover:bg-gold hover:text-ink transition-colors font-cinzel text-xs tracking-widest uppercase font-semibold self-start mb-4" href="https://www.google.com/maps/search/?api=1&query=Masjid+Banu+Coomasie%2C+GRA%2C+Katsina" target="_blank" rel="noopener">
+          <span>Get Directions</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+
+        <p class="font-cormorant italic text-base text-goldlight/80">
+          “Allahumma barik lahuma wa barik alaihima”
+        </p>
+      </article>
+
+    </div>
+    <div class="section-bridge-bottom"></div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 4.12 SECTION 12 - EVENT 5: THE WALIMA                        -->
+  <!-- ============================================================ -->
+  <section id="walima" class="royal-section py-28 px-6 bg-ivory text-ink">
+    <div class="inner max-w-4xl w-full mx-auto flex flex-col items-center relative z-10 text-center">
+      
+      <!-- Pencil art image with matted frame and curl shadow -->
+      <div id="walimaFrame" class="relative max-w-md w-full p-4 bg-white rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.15)] mb-10 border border-bronze/20 opacity-0 transform translate-y-8">
+        <div class="relative overflow-hidden rounded bg-offwhite aspect-[9/14]">
+          <img class="w-full h-full object-contain" src="./assets/images/Gemini_Generated_Image_hfouxuhfouxuhfou.jfif" alt="Pencil sketch of the Walima dining tables" loading="lazy" decoding="async">
+        </div>
+        <!-- Matted paper edge shadow -->
+        <div class="absolute -bottom-3 left-6 right-6 h-4 bg-black/10 filter blur-md -z-10 rounded-full"></div>
+      </div>
+
+      <!-- Event Details (Container removed) -->
+      <div class="max-w-xl">
+        <span class="font-cinzel text-xs tracking-[0.25em] uppercase text-bronze font-semibold block mb-1">Event Five</span>
+        <h3 class="font-script text-5xl sm:text-6xl text-bronze mb-2">The Walima</h3>
+        <p class="font-cinzel text-sm tracking-widest uppercase text-ink/70 mb-6">A Joyful Banquet Gathering</p>
+
+        <div class="space-y-3 mb-8">
+          <p class="font-cormorant text-xl sm:text-2xl text-ink">Saturday, 26th December 2026</p>
+          <p class="font-cinzel text-lg font-semibold text-bronze tracking-wider">4:00 PM WAT</p>
+          <p class="font-cormorant text-xl sm:text-2xl text-ink font-semibold">Katsina Motel, Katsina</p>
+        </div>
+
+        <a class="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border-2 border-bronze text-bronze hover:bg-bronze hover:text-ivory transition-colors font-cinzel text-xs tracking-widest uppercase font-bold" href="https://www.google.com/maps/search/?api=1&query=Katsina+Motel%2C+Katsina" target="_blank" rel="noopener">
+          <span>Get Directions</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
+
+    </div>
+    <div class="section-bridge-bottom"></div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 4.13 SECTION 13 - SAVE THE DATE                              -->
+  <!-- ============================================================ -->
+  <section id="save-date" class="royal-section py-28 px-6 bg-gradient-to-b from-ink via-navy to-ink text-center">
+    <div class="inner max-w-xl mx-auto flex flex-col items-center relative z-10">
+      
+      <!-- Content without the glass-panel border/padding -->
+      <div class="w-full max-w-xl">
+        <p class="font-cinzel text-xs tracking-[0.3em] uppercase text-goldlight mb-2">Keep The Memory</p>
+        <h2 class="font-script text-5xl sm:text-7xl text-white mb-2">Save the Date</h2>
+        
+        <p class="font-cinzel text-xl sm:text-2xl text-ivory font-semibold tracking-wider my-3">
+          Friday, 25th December 2026
+        </p>
+        <p class="font-cormorant italic text-lg sm:text-xl text-goldlight/90 mb-8">
+          Wedding Fatiha · Al-Amin &amp; Aisha
+        </p>
+
+        <!-- Primary Add to Calendar Button -->
+        <button id="btnOpenCalendar" class="w-full sm:w-auto px-10 py-4 rounded-full bg-gold text-ink font-cinzel text-xs tracking-widest uppercase font-bold hover:bg-goldlight transform hover:scale-105 transition-all shadow-[0_0_25px_rgba(201,162,39,0.5)] mb-4" type="button">
+          Add to Calendar
+        </button>
+
+        <!-- Secondary Share with a Friend Button -->
+        <div class="mt-2">
+          <button id="btnShareInvite" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gold/40 text-goldlight hover:border-gold transition-colors font-cinzel text-xs tracking-widest uppercase" type="button">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.888 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.456 5.711 1.457h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            <span>Share with a Friend</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+    <div class="section-bridge-bottom"></div>
+  </section>
+
+  <!-- Calendar Bottom-Sheet Modal -->
+  <div id="calendarModal" class="fixed inset-0 z-[120] bg-black/80 backdrop-blur-md flex items-end sm:items-center justify-center p-0 sm:p-4 opacity-0 pointer-events-none transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="calModalTitle">
+    <div id="calModalCard" class="w-full sm:max-w-md bg-ink border-t sm:border border-gold/40 rounded-t-3xl sm:rounded-3xl p-6 sm:p-8 text-left transform translate-y-full sm:translate-y-8 transition-transform duration-400 ease-out shadow-2xl">
+      <div class="flex items-center justify-between mb-4">
+        <h3 id="calModalTitle" class="font-cinzel text-xl text-gold-metal font-semibold">Add to Calendar</h3>
+        <button id="btnCloseModal" class="p-2 text-ivory/60 hover:text-ivory" aria-label="Close calendar options">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <p class="font-cormorant text-base text-ivory/80 mb-6">Choose your preferred celebration schedule:</p>
+
+      <!-- Option 1: Wedding Fatiha Only -->
+      <div class="p-4 rounded-xl glass-panel gold-border mb-4">
+        <p class="font-cinzel text-xs tracking-wider uppercase text-goldlight font-semibold mb-1">1. Wedding Fatiha Only</p>
+        <p class="font-cormorant text-sm text-ivory/70 mb-3">Friday, 25 Dec 2026 · 1:30 PM</p>
+        <div class="flex gap-2">
+          <a id="btnFatihaGoogle" class="flex-1 text-center py-2 px-3 rounded-lg border border-gold/40 text-xs font-cinzel uppercase tracking-wider text-goldlight hover:bg-gold/20" target="_blank" rel="noopener">Google</a>
+          <button id="btnFatihaIcs" class="flex-1 text-center py-2 px-3 rounded-lg bg-gold text-ink text-xs font-cinzel uppercase tracking-wider font-semibold hover:bg-goldlight">Apple / Outlook (.ics)</button>
+        </div>
+      </div>
+
+      <!-- Option 2: All Five Events -->
+      <div class="p-4 rounded-xl glass-panel gold-border">
+        <p class="font-cinzel text-xs tracking-wider uppercase text-goldlight font-semibold mb-1">2. All Five Events</p>
+        <p class="font-cormorant text-sm text-ivory/70 mb-3">Full celebration series (22–26 Dec)</p>
+        <div class="flex flex-col gap-2">
+          <button id="btnAllIcs" class="w-full text-center py-2.5 px-3 rounded-lg bg-gold text-ink text-xs font-cinzel uppercase tracking-wider font-semibold hover:bg-goldlight">Download All 5 (.ics file)</button>
+          <div class="text-[11px] font-cinzel text-goldlight/70 uppercase tracking-wider mt-1 mb-1">Individual Google links:</div>
+          <div class="grid grid-cols-2 gap-1.5 text-[11px] font-cinzel text-ivory/80">
+            <a id="gLinkLalle" class="underline hover:text-goldlight truncate" target="_blank" rel="noopener">1. Sa Lalle</a>
+            <a id="gLinkFootball" class="underline hover:text-goldlight truncate" target="_blank" rel="noopener">2. Football</a>
+            <a id="gLinkDinner" class="underline hover:text-goldlight truncate" target="_blank" rel="noopener">3. Dinner</a>
+            <a id="gLinkFatiha" class="underline hover:text-goldlight truncate" target="_blank" rel="noopener">4. Fatiha</a>
+            <a id="gLinkWalima" class="underline hover:text-goldlight truncate col-span-2" target="_blank" rel="noopener">5. Walima</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 4.14 SECTION 14 - RSVP & GOODWILL MESSAGES                   -->
+  <!-- ============================================================ -->
+  <section id="rsvp" class="royal-section py-28 px-6 bg-gradient-to-b from-ink via-[#0d1629] to-ink text-center">
+    <div class="inner max-w-xl mx-auto relative z-10 w-full">
+      
+      <p class="font-cinzel text-xs tracking-[0.3em] uppercase text-goldlight mb-2">Honour Us With Your Response</p>
+      <h2 class="font-script text-5xl sm:text-6xl text-gold-metal mb-2">Kindly Reply</h2>
+      <p class="font-cormorant italic text-base text-goldlight/80 mb-8">Kindly respond by 15 December 2026</p>
+
+      <!-- RSVP Form Card -->
+      <div class="glass-panel gold-border p-6 sm:p-10 rounded-3xl text-left">
+        <form id="rsvpForm" class="space-y-6">
+          
+          <!-- Full Name -->
+          <div>
+            <label for="rsvpName" class="block font-cinzel text-xs tracking-widest uppercase text-goldlight mb-2">
+              Full Name <span class="text-crimson">*</span>
+            </label>
+            <input id="rsvpName" name="name" type="text" required placeholder="Enter your full name" class="w-full px-4 py-3 rounded-lg bg-navy/80 border border-gold/40 text-ivory placeholder-ivory/30 focus:border-gold focus:ring-1 focus:ring-gold text-base font-cormorant">
+          </div>
+
+          <!-- Attending Status (Radio Group) -->
+          <fieldset>
+            <legend class="block font-cinzel text-xs tracking-widest uppercase text-goldlight mb-2">
+              Will you attend? <span class="text-crimson">*</span>
+            </legend>
+            <div class="flex flex-wrap gap-4 pt-1">
+              <label class="flex items-center gap-2 cursor-pointer text-ivory text-base font-cormorant">
+                <input type="radio" name="attending" value="yes" checked class="w-4 h-4 accent-gold cursor-pointer">
+                <span>Joyfully accepts</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer text-ivory text-base font-cormorant">
+                <input type="radio" name="attending" value="no" class="w-4 h-4 accent-gold cursor-pointer">
+                <span>Regretfully declines</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Number of Guests (Only when attending) -->
+          <div id="guestsWrapper">
+            <label for="rsvpGuests" class="block font-cinzel text-xs tracking-widest uppercase text-goldlight mb-2">
+              Number of Guests
+            </label>
+            <input id="rsvpGuests" name="guests" type="number" min="1" max="10" value="1" class="w-full px-4 py-3 rounded-lg bg-navy/80 border border-gold/40 text-ivory focus:border-gold focus:ring-1 focus:ring-gold text-base font-cormorant">
+          </div>
+
+          <!-- Message or Prayer -->
+          <div>
+            <label for="rsvpMessage" class="block font-cinzel text-xs tracking-widest uppercase text-goldlight mb-2">
+              Message or Prayer for the Couple (optional)
+            </label>
+            <textarea id="rsvpMessage" name="message" rows="3" placeholder="Write your goodwill message or prayer..." class="w-full px-4 py-3 rounded-lg bg-navy/80 border border-gold/40 text-ivory placeholder-ivory/30 focus:border-gold focus:ring-1 focus:ring-gold text-base font-cormorant"></textarea>
+          </div>
+
+          <button id="btnSubmitRsvp" type="submit" class="w-full py-4 rounded-full bg-gold text-ink font-cinzel text-xs tracking-widest uppercase font-bold hover:bg-goldlight transition-colors shadow-lg">
+            Reply on WhatsApp
+          </button>
+        </form>
+
+        <!-- Thank You State (hidden until submitted) -->
+        <div id="rsvpThankYou" class="hidden text-center py-6">
+          <!-- Animated Gold SVG Checkmark -->
+          <div class="w-20 h-20 mx-auto mb-4 text-goldlight">
+            <svg viewBox="0 0 52 52" class="w-full h-full">
+              <circle id="checkCircle" cx="26" cy="26" r="23" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="166" stroke-dashoffset="166" class="transition-all duration-700 ease-out"/>
+              <path id="checkTick" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M14 27l7 7 16-16" stroke-dasharray="48" stroke-dashoffset="48" class="transition-all duration-500 delay-500 ease-out"/>
+            </svg>
+          </div>
+
+          <h4 class="font-cinzel text-2xl text-gold-metal font-semibold mb-2">Jazakumullahu Khayran</h4>
+          <p class="font-cormorant text-lg text-ivory/90 mb-6">
+            Your response has been prepared in WhatsApp. Please press <strong class="text-goldlight">Send</strong> in WhatsApp to confirm.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <a id="btnWaReopen" class="px-6 py-2.5 rounded-full bg-gold text-ink font-cinzel text-xs tracking-wider uppercase font-semibold hover:bg-goldlight" target="_blank" rel="noopener">Open WhatsApp Again</a>
+            <button id="btnCopyRsvp" class="px-6 py-2.5 rounded-full border border-gold/40 text-goldlight font-cinzel text-xs tracking-wider uppercase hover:border-gold" type="button">Copy Message</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="section-bridge-bottom"></div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 4.15 SECTION 15 - THE CLOSING BLESSING                       -->
+  <!-- ============================================================ -->
+  <section id="blessing" class="royal-section py-32 px-6 bg-gradient-to-b from-ink via-[#050914] to-black text-center relative overflow-hidden" aria-label="Closing Quranic Blessing">
+    <div class="inner max-w-4xl mx-auto flex flex-col items-center relative z-10">
+      
+      <p class="font-cinzel text-xs tracking-[0.3em] uppercase text-goldlight mb-6">A Sacred Blessing</p>
+
+      <!-- Surah Ar-Rum 30:21 in Amiri -->
+      <div class="my-4 max-w-3xl">
+        <p class="font-amiri text-2xl sm:text-4xl md:text-5xl text-goldlight leading-loose filter drop-shadow-[0_0_20px_rgba(201,162,39,0.4)]" lang="ar" dir="rtl">
+          وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ
+        </p>
+      </div>
+
+      <div class="w-32 h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent my-6" aria-hidden="true"></div>
+
+      <!-- English Translation -->
+      <p class="font-cormorant italic text-lg sm:text-2xl text-ivory/90 max-w-2xl leading-relaxed mb-4">
+        “And of His signs is that He created for you mates from among yourselves that you may find tranquillity in them; and He placed between you affection and mercy. Indeed in that are signs for a people who give thought.”
+      </p>
+
+      <p class="font-cinzel text-xs tracking-[0.25em] uppercase text-goldlight/80 mb-10">
+        Surah Ar-Rum · 30:21
+      </p>
+
+      <div class="space-y-2 mt-4">
+        <p class="font-script text-3xl sm:text-4xl text-gold-metal">
+          With love, the families of Kabir Usman &amp; Muhammad Abdullah
+        </p>
+        <p class="font-cinzel text-xs tracking-[0.3em] uppercase text-goldlight/70 pt-2">
+          Barakallahu lakuma
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Terminal Fade to Pure Black (#000) Scrim -->
+    <div id="terminalBlackScrim" class="fixed inset-0 bg-black pointer-events-none z-[80] opacity-0" aria-hidden="true"></div>
+  </section>
+
+</main>
+
+<!-- Hidden Audio Element -->
+<audio id="weddingAudio" src="./assets/audio/love-story.mp3" loop preload="none"></audio>
+
+<!-- ============================================================== -->
+<!-- SCRIPT: MODULAR VANILLA JAVASCRIPT ARCHITECTURE                -->
+<!-- ============================================================== -->
+<script>
+(() => {
+  'use strict';
+
+  // ============================================================
+  // 1. CONFIGURATION: Single Source of Truth
+  // ============================================================
+  const CONFIG = {
+    couple: {
+      groom: 'Al-Amin Kabir Usman',
+      bride: 'Aisha Muhammad Abdullah',
+      groomFather: 'Alh. Kabir Usman',
+      brideFather: 'Alh. Muhammad Abdullah',
+      initials: 'A & A'
+    },
+    invitation: 'Alh. Kabir Usman and Alh. Muhammad Abdullah, together with their families, cordially invite you to the wedding Fatiha of their son and daughter',
+    whatsapp: '2349024129392',
+    timezone: 'Africa/Lagos',
+    countdownTarget: '2026-12-25T13:30:00+01:00',
+    rsvpNote: 'Kindly respond by 15 December 2026',
+    musicPath: './assets/audio/love-story.mp3',
+    // Sampled corner colors for chroma key (from Python OpenCV calibration)
+    chroma: {
+      rings: {
+        keyRgb: [6, 99, 230],      // Blue
+        similarity: 0.38,
+        smoothness: 0.12,
+        spillStrength: 0.85
+      },
+      doves: {
+        keyRgb: [14, 171, 37],     // Green
+        similarity: 0.40,
+        smoothness: 0.14,
+        spillStrength: 0.90
+      }
+    },
+    events: [
+      {
+        id: 'lalle',
+        title: 'Sa Lalle & Kamu',
+        dateStr: 'Tuesday, 22 December 2026',
+        timeStr: '4:00 PM',
+        venue: 'Munja Event, GRA, Katsina',
+        startUtc: '20261222T150000Z',
+        endUtc: '20261222T200000Z'
+      },
+      {
+        id: 'football',
+        title: 'The Football Match',
+        dateStr: 'Wednesday, 23 December 2026',
+        timeStr: '8:00 PM',
+        venue: 'Timeless Arena, GRA, Katsina',
+        startUtc: '20261223T190000Z',
+        endUtc: '20261223T210000Z'
+      },
+      {
+        id: 'dinner',
+        title: 'The Wedding Dinner',
+        dateStr: 'Thursday, 24 December 2026',
+        timeStr: '8:00 PM',
+        venue: 'Hillside Royal Suites, GRA, Katsina',
+        startUtc: '20261224T190000Z',
+        endUtc: '20261224T220000Z'
+      },
+      {
+        id: 'fatiha',
+        title: 'The Wedding Fatiha',
+        dateStr: 'Friday, 25 December 2026',
+        timeStr: '1:30 PM',
+        venue: 'Masjid Banu Coomasie, GRA, Katsina',
+        startUtc: '20261225T123000Z',
+        endUtc: '20261225T140000Z'
+      },
+      {
+        id: 'walima',
+        title: 'The Walima',
+        dateStr: 'Saturday, 26 December 2026',
+        timeStr: '4:00 PM',
+        venue: 'Katsina Motel, Katsina',
+        startUtc: '20261226T150000Z',
+        endUtc: '20261226T180000Z'
+      }
+    ]
+  };
+
+  const isCoarse = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ============================================================
+  // 2. UTILS
+  // ============================================================
+  const Utils = {
+    toast(msg) {
+      const el = document.getElementById('toast');
+      if (!el) return;
+      el.textContent = msg;
+      el.classList.add('show');
+      setTimeout(() => el.classList.remove('show'), 3500);
+    },
+    clamp(val, min, max) {
+      return Math.max(min, Math.min(max, val));
+    },
+    buildGoogleCalUrl(title, startUtc, endUtc, details, location) {
+      const base = 'https://calendar.google.com/calendar/render?action=TEMPLATE';
+      return `${base}&text=${encodeURIComponent(title)}&dates=${startUtc}/${endUtc}&details=${encodeURIComponent(details)}&location=${encodeURIComponent(location)}`;
+    }
+  };
+
+  // ============================================================
+  // 3. AUDIO MODULE
+  // ============================================================
+  const AudioModule = {
+    audio: null,
+    btn: null,
+    isAvailable: false,
+    isPlaying: false,
+
+    init() {
+      this.audio = document.getElementById('weddingAudio');
+      this.btn = document.getElementById('audioToggle');
+      if (!this.audio || !this.btn) return;
+
+      this.audio.addEventListener('error', () => {
+        this.isAvailable = false;
+        this.btn.style.display = 'none';
+      });
+
+      this.audio.addEventListener('canplay', () => {
+        this.isAvailable = true;
+      }, { once: true });
+
+      this.btn.addEventListener('click', () => this.toggle());
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden && this.isPlaying) {
+          this.audio.pause();
+        } else if (!document.hidden && this.isPlaying) {
+          this.audio.play().catch(() => {});
+        }
+      });
+    },
+
+    playWithFade() {
+      if (!this.audio) return;
+      this.audio.volume = 0;
+      const playPromise = this.audio.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          this.isPlaying = true;
+          this.btn.classList.add('visible', 'audio-playing');
+          this.btn.setAttribute('aria-pressed', 'true');
+          gsap.to(this.audio, { volume: 0.5, duration: 2.5, ease: 'power1.out' });
+        }).catch(() => {});
+      }
+    },
+
+    toggle() {
+      if (!this.audio) return;
+      if (this.audio.paused) {
+        this.audio.play().then(() => {
+          this.isPlaying = true;
+          this.btn.classList.add('audio-playing');
+          this.btn.setAttribute('aria-pressed', 'true');
+          gsap.to(this.audio, { volume: 0.5, duration: 1 });
+        }).catch(() => {});
+      } else {
+        gsap.to(this.audio, {
+          volume: 0,
+          duration: 0.8,
+          onComplete: () => {
+            this.audio.pause();
+            this.isPlaying = false;
+            this.btn.classList.remove('audio-playing');
+            this.btn.setAttribute('aria-pressed', 'false');
+          }
+        });
+      }
+    }
+  };
+
+  // ============================================================
+  // 4. FLOATING GOLD DUST CANVAS
+  // ============================================================
+  const FloatingDust = {
+    canvas: null,
+    ctx: null,
+    particles: [],
+    animId: null,
+
+    init() {
+      this.canvas = document.getElementById('dustCanvas');
+      if (!this.canvas || prefersReducedMotion) return;
+      this.ctx = this.canvas.getContext('2d');
+      this.resize();
+      window.addEventListener('resize', () => this.resize(), { passive: true });
+
+      const count = isCoarse ? 25 : 55;
+      for (let i = 0; i < count; i++) {
+        this.particles.push({
+          x: Math.random() * this.canvas.width,
+          y: Math.random() * this.canvas.height,
+          radius: Math.random() * 1.5 + 0.5,
+          speedY: -(Math.random() * 0.35 + 0.1),
+          speedX: (Math.random() - 0.5) * 0.2,
+          alpha: Math.random() * 0.6 + 0.2,
+          pulse: Math.random() * Math.PI
+        });
+      }
+      this.loop();
+    },
+
+    resize() {
+      if (!this.canvas) return;
+      this.canvas.width = window.innerWidth;
+      this.canvas.height = window.innerHeight;
+    },
+
+    loop() {
+      if (!this.ctx) return;
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      const w = this.canvas.width;
+      const h = this.canvas.height;
+
+      for (let p of this.particles) {
+        p.y += p.speedY;
+        p.x += p.speedX;
+        p.pulse += 0.02;
+
+        if (p.y < 0) {
+          p.y = h + 5;
+          p.x = Math.random() * w;
+        }
+        if (p.x < 0) p.x = w;
+        if (p.x > w) p.x = 0;
+
+        const currentAlpha = p.alpha * (0.6 + 0.4 * Math.sin(p.pulse));
+        this.ctx.fillStyle = `rgba(241, 215, 122, ${currentAlpha})`;
+        this.ctx.beginPath();
+        this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        this.ctx.fill();
+      }
+
+      this.animId = requestAnimationFrame(() => this.loop());
+    }
+  };
+
+  // ============================================================
+  // 5. CHROMA-KEY WEBGL ENGINE (YCbCr + Spill Suppression)
+  // ============================================================
+  const ChromaKey = {
+    vsSource: `
+      attribute vec2 aPosition;
+      attribute vec2 aTexCoord;
+      varying vec2 vTexCoord;
+      void main() {
+        vTexCoord = aTexCoord;
+        gl_Position = vec4(aPosition, 0.0, 1.0);
+      }
+    `,
+
+    fsSource: `
+      precision mediump float;
+      uniform sampler2D uSampler;
+      uniform vec3 uKeyColor;
+      uniform float uSimilarity;
+      uniform float uSmoothness;
+      uniform float uSpill;
+      uniform int uIsBlue;
+      varying vec2 vTexCoord;
+
+      vec3 rgb2ycbcr(vec3 c) {
+        float y = 0.299 * c.r + 0.587 * c.g + 0.114 * c.b;
+        float cb = -0.168736 * c.r - 0.331264 * c.g + 0.5 * c.b;
+        float cr = 0.5 * c.r - 0.418688 * c.g - 0.081312 * c.b;
+        return vec3(y, cb, cr);
+      }
+
+      void main() {
+        vec4 color = texture2D(uSampler, vTexCoord);
+        vec3 ycbcr = rgb2ycbcr(color.rgb);
+        vec3 keyYCbCr = rgb2ycbcr(uKeyColor);
+
+        float dist = distance(ycbcr.yz, keyYCbCr.yz);
+        float alpha = smoothstep(uSimilarity, uSimilarity + uSmoothness, dist);
+
+        vec3 suppressed = color.rgb;
+        if (uIsBlue == 1) {
+          float maxB = (color.r + color.g) * 0.5;
+          suppressed.b = mix(color.b, min(color.b, maxB), uSpill);
+        } else {
+          float maxG = (color.r + color.b) * 0.5;
+          suppressed.g = mix(color.g, min(color.g, maxG), uSpill);
+        }
+
+        gl_FragColor = vec4(suppressed * alpha, alpha);
+      }
+    `,
+
+    instances: {},
+
+    setup(id, videoEl, canvasEl, cfg, isBlue = false) {
+      if (!canvasEl || !videoEl) return;
+      const gl = canvasEl.getContext('webgl', { alpha: true, premultipliedAlpha: true });
+      if (!gl) {
+        return this.setup2DFallback(id, videoEl, canvasEl);
+      }
+
+      const compile = (src, type) => {
+        const s = gl.createShader(type);
+        gl.shaderSource(s, src);
+        gl.compileShader(s);
+        return s;
+      };
+      const prog = gl.createProgram();
+      gl.attachShader(prog, compile(this.vsSource, gl.VERTEX_SHADER));
+      gl.attachShader(prog, compile(this.fsSource, gl.FRAGMENT_SHADER));
+      gl.linkProgram(prog);
+      gl.useProgram(prog);
+
+      const buf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+        -1, -1, 0, 1,
+         1, -1, 1, 1,
+        -1,  1, 0, 0,
+        -1,  1, 0, 0,
+         1, -1, 1, 1,
+         1,  1, 1, 0
+      ]), gl.STATIC_DRAW);
+
+      const aPos = gl.getAttribLocation(prog, 'aPosition');
+      const aTex = gl.getAttribLocation(prog, 'aTexCoord');
+      gl.enableVertexAttribArray(aPos);
+      gl.enableVertexAttribArray(aTex);
+      gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 16, 0);
+      gl.vertexAttribPointer(aTex, 2, gl.FLOAT, false, 16, 8);
+
+      const tex = gl.createTexture();
+      gl.bindTexture(gl.TEXTURE_2D, tex);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+
+      const uKey = gl.getUniformLocation(prog, 'uKeyColor');
+      const uSim = gl.getUniformLocation(prog, 'uSimilarity');
+      const uSmo = gl.getUniformLocation(prog, 'uSmoothness');
+      const uSpi = gl.getUniformLocation(prog, 'uSpill');
+      const uBlu = gl.getUniformLocation(prog, 'uIsBlue');
+
+      gl.uniform3f(uKey, cfg.keyRgb[0] / 255, cfg.keyRgb[1] / 255, cfg.keyRgb[2] / 255);
+      gl.uniform1f(uSim, cfg.similarity);
+      gl.uniform1f(uSmo, cfg.smoothness);
+      gl.uniform1f(uSpi, cfg.spillStrength);
+      gl.uniform1i(uBlu, isBlue ? 1 : 0);
+
+      this.instances[id] = {
+        gl, videoEl, canvasEl, tex, isRunning: false,
+        render: () => {
+          if (!this.instances[id].isRunning) return;
+          try {
+            if (videoEl.readyState >= 2) {
+              gl.bindTexture(gl.TEXTURE_2D, tex);
+              gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, videoEl);
+              gl.viewport(0, 0, canvasEl.width, canvasEl.height);
+              gl.drawArrays(gl.TRIANGLES, 0, 6);
+            }
+          } catch (e) {
+            this.instances[id].isRunning = false;
+            return;
+          }
+          requestAnimationFrame(this.instances[id].render);
+        }
+      };
+    },
+
+    setup2DFallback(id, videoEl, canvasEl) {
+      const ctx = canvasEl.getContext('2d');
+      this.instances[id] = {
+        ctx, videoEl, canvasEl, isRunning: false,
+        render: () => {
+          if (!this.instances[id].isRunning) return;
+          if (videoEl.readyState >= 2) {
+            ctx.drawImage(videoEl, 0, 0, canvasEl.width, canvasEl.height);
+          }
+          requestAnimationFrame(this.instances[id].render);
+        }
+      };
+    },
+
+    start(id) {
+      if (this.instances[id] && !this.instances[id].isRunning) {
+        this.instances[id].isRunning = true;
+        this.instances[id].videoEl.play().catch(() => {});
+        this.instances[id].render();
+      }
+    },
+
+    stop(id) {
+      if (this.instances[id] && this.instances[id].isRunning) {
+        this.instances[id].isRunning = false;
+        this.instances[id].videoEl.pause();
+      }
+    }
+  };
+
+  // ============================================================
+  // 6. THREE.JS 3D WATER FOUNTAIN PARTICLE SPRAY OVERLAY
+  // ============================================================
+  const ThreeFountain = {
+    init() {
+      const canvas = document.getElementById('fountainCanvas');
+      if (!canvas || prefersReducedMotion || !window.THREE) return;
+
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isCoarse ? 1.25 : 1.75));
+      renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 50);
+      camera.position.set(0, 0, 6);
+
+      const light = new THREE.PointLight(0xF1D77A, 2, 15);
+      light.position.set(0, 2, 2);
+      scene.add(light);
+
+      const particleCount = isCoarse ? 120 : 260;
+      const partGeo = new THREE.BufferGeometry();
+      const pos = new Float32Array(particleCount * 3);
+      const vels = [];
+
+      for (let i = 0; i < particleCount; i++) {
+        pos[i * 3] = (Math.random() - 0.5) * 0.2;
+        pos[i * 3 + 1] = 0.5;
+        pos[i * 3 + 2] = (Math.random() - 0.5) * 0.2;
+        const angle = Math.random() * Math.PI * 2;
+        const spd = 0.015 + Math.random() * 0.025;
+        vels.push({
+          x: Math.cos(angle) * spd,
+          y: 0.04 + Math.random() * 0.045,
+          z: Math.sin(angle) * spd
+        });
+      }
+
+      partGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      const partMat = new THREE.PointsMaterial({
+        color: 0xE6F3FF,
+        size: 0.065,
+        transparent: true,
+        opacity: 0.8,
+        blending: THREE.AdditiveBlending
+      });
+      const spray = new THREE.Points(partGeo, partMat);
+      scene.add(spray);
+
+      let running = false;
+      const animate = () => {
+        if (!running) return;
+        const pArr = spray.geometry.attributes.position.array;
+        for (let i = 0; i < particleCount; i++) {
+          pArr[i * 3] += vels[i].x;
+          pArr[i * 3 + 1] += vels[i].y;
+          pArr[i * 3 + 2] += vels[i].z;
+          vels[i].y -= 0.0018;
+
+          if (pArr[i * 3 + 1] < -0.6) {
+            pArr[i * 3] = (Math.random() - 0.5) * 0.15;
+            pArr[i * 3 + 1] = 0.5;
+            pArr[i * 3 + 2] = (Math.random() - 0.5) * 0.15;
+            const angle = Math.random() * Math.PI * 2;
+            const spd = 0.015 + Math.random() * 0.025;
+            vels[i].x = Math.cos(angle) * spd;
+            vels[i].y = 0.04 + Math.random() * 0.045;
+            vels[i].z = Math.sin(angle) * spd;
+          }
+        }
+        spray.geometry.attributes.position.needsUpdate = true;
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+      };
+
+      ScrollTrigger.create({
+        trigger: '#fountain',
+        start: 'top bottom',
+        end: 'bottom top',
+        onEnter: () => { running = true; animate(); },
+        onLeave: () => { running = false; },
+        onEnterBack: () => { running = true; animate(); },
+        onLeaveBack: () => { running = false; }
+      });
+    }
+  };
+
+  // ============================================================
+  // 7. SECTION 1: THE GRAND ROYAL ENTRANCE
+  // ============================================================
+  const Entrance = {
+    opened: false,
+
+    init() {
+      const tapZone = document.getElementById('entranceTapZone');
+      if (!tapZone) return;
+
+      const triggerOpen = () => {
+        console.log("Triggering door open...");
+        this.openDoors();
+      };
+
+      tapZone.addEventListener('pointerdown', (e) => {
+        console.log("TapZone clicked!");
+        triggerOpen();
+      });
+      window.addEventListener('keydown', (e) => {
+        if (!this.opened && (e.key === ' ' || e.key === 'Enter' || e.key === 'ArrowDown' || e.key === 'PageDown')) {
+          e.preventDefault();
+          triggerOpen();
+        }
+      });
+      window.addEventListener('wheel', (e) => {
+        if (!this.opened && e.deltaY > 0) {
+          triggerOpen();
+        }
+      }, { passive: true });
+      window.addEventListener('touchmove', () => {
+        if (!this.opened) triggerOpen();
+      }, { passive: true });
+    },
+
+    openDoors() {
+      if (this.opened) return;
+      this.opened = true;
+
+      // Start music on first user gesture
+      AudioModule.playWithFade();
+
+      // Lock release
+      document.body.classList.remove('locked');
+      document.body.classList.add('open');
+
+      if (prefersReducedMotion) {
+        gsap.set(['#doorLeft', '#doorRight', '#doorSeam'], { display: 'none' });
+        gsap.set('#entranceCopy', { opacity: 1 });
+        gsap.set(['#bismillahText', '#bismillahEn', '#monogram', '#scrollPrompt'], { opacity: 1, y: 0 });
+        return;
+      }
+
+      const tl = gsap.timeline({
+        onComplete: () => {
+          gsap.set(['#doorLeft', '#doorRight', '#doorSeam'], { display: 'none' });
+          ScrollTrigger.refresh();
+        }
+      });
+
+      tl.to('#doorSeam', { opacity: 0, duration: 0.35 }, 0);
+
+      // Doors swing outward in 3D perspective
+      tl.to('#doorLeft', {
+        rotateY: -72,
+        xPercent: -60,
+        duration: 2.5,
+        ease: 'power3.inOut'
+      }, 0.1);
+
+      tl.to('#doorRight', {
+        rotateY: 72,
+        xPercent: 60,
+        duration: 2.5,
+        ease: 'power3.inOut'
+      }, 0.1);
+
+      // Royal palace wall zoom in
+      tl.fromTo('#palaceWallImg', {
+        scale: 1.12,
+        filter: 'brightness(0.45)'
+      }, {
+        scale: 1.0,
+        filter: 'brightness(0.85)',
+        duration: 2.2,
+        ease: 'power2.out'
+      }, 0.2);
+
+      // Reveal text wrapper as soon as doors part
+      // Animation sequence for static text
+      tl.to('#entranceCopy', { opacity: 1, duration: 0.6 }, 0.8);
+
+      // Arabic Bismillah
+      tl.to('#bismillahText', {
+        opacity: 1,
+        duration: 1.0,
+        ease: 'power2.out'
+      }, 1.0);
+
+      // Al-Amin & Aisha
+      tl.to('#monogram', {
+        opacity: 1,
+        duration: 1.0,
+        ease: 'power2.out'
+      }, 1.4);
+
+      tl.to('#scrollPrompt', {
+        opacity: 1,
+        duration: 0.8
+      }, 3.6);
+    }
+  };
+
+  // ============================================================
+  // 8. SECTION 2: THE COUNTDOWN
+  // ============================================================
+  const Countdown = {
+    targetTime: new Date(CONFIG.countdownTarget).getTime(),
+
+    init() {
+      this.update();
+      setInterval(() => this.update(), 1000);
+    },
+
+    update() {
+      const now = Date.now();
+      const diff = Math.max(0, this.targetTime - now);
+
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const m = Math.floor((diff / (1000 * 60)) % 60);
+      const s = Math.floor((diff / 1000) % 60);
+
+      const setVal = (id, val) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = String(val).padStart(2, '0');
+      };
+
+      setVal('countDays', d);
+      setVal('countHours', h);
+      setVal('countMinutes', m);
+      setVal('countSeconds', s);
+
+      if (diff <= 0) {
+        const note = document.getElementById('countdownNote');
+        if (note) note.textContent = 'Alhamdulillah, the day is here!';
+      }
+    }
+  };
+
+  // ============================================================
+  // 9. SECTION 4: THE ROYAL CURTAINS (SCRATCH TO REVEAL)
+  // 9. SECTION 4: THE ROYAL CURTAINS (TOUCH TO OPEN GENTLY)
+  const Curtains = {
+    opened: false,
+
+    init() {
+      const left = document.getElementById('curtainLeft');
+      const right = document.getElementById('curtainRight');
+      const stage = document.getElementById('curtainStage');
+      const names = document.getElementById('namesContent');
+      if (!left || !right || !stage) return;
+
+      const openCurtains = () => {
+        if (this.opened) return;
+        this.opened = true;
+
+        gsap.to(left, {
+          xPercent: -102,
+          duration: 3.2,
+          ease: 'power2.inOut'
+        });
+        gsap.to(right, {
+          xPercent: 102,
+          duration: 3.2,
+          ease: 'power2.inOut',
+          onComplete: () => {
+            gsap.set([left, right], { display: 'none' });
+          }
+        });
+        // Reveal names
+        if (names) {
+            gsap.to(names, { opacity: 1, duration: 1.5, delay: 0.5 });
+        }
+      };
+
+      stage.addEventListener('pointerdown', openCurtains);
+    }
+  };
+  Curtains.init();
+
+  // ============================================================
+  // 10. SECTION 6: DOVES & 'EVENTS' IN INK
+  // ============================================================
+  const DovesInk = {
+    init() {
+      if (prefersReducedMotion) {
+        gsap.set('#eventsSub', { opacity: 1 });
+        return;
+      }
+
+      ScrollTrigger.create({
+        trigger: '#doves',
+        start: 'top 70%',
+        once: true,
+        onEnter: () => {
+          gsap.fromTo('#inkEventsTitle', {
+            clipPath: 'inset(0 100% 0 0)'
+          }, {
+            clipPath: 'inset(0 0% 0 0)',
+            duration: 3.2,
+            ease: 'power2.out'
+          });
+
+          gsap.fromTo('#inkPenNib', {
+            opacity: 1,
+            left: '0%'
+          }, {
+            left: '100%',
+            duration: 3.2,
+            ease: 'power2.out',
+            onComplete: () => gsap.to('#inkPenNib', { opacity: 0, duration: 0.3 })
+          });
+
+          gsap.to('#eventsSub', {
+            opacity: 1,
+            duration: 1.2,
+            delay: 2.2
+          });
+        }
+      });
+    }
+  };
+
+  // ============================================================
+  // 11. SECTION 12: WALIMA ART MATTED FRAME
+  // ============================================================
+  const WalimaArt = {
+    init() {
+      const frame = document.getElementById('walimaFrame');
+      if (!frame) return;
+
+      if (prefersReducedMotion) {
+        gsap.set(frame, { opacity: 1, y: 0 });
+        return;
+      }
+
+      gsap.to(frame, {
+        opacity: 1,
+        y: 0,
+        filter: 'blur(0px)',
+        duration: 2.0,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '#walima',
+          start: 'top 75%',
+          once: true
+        }
+      });
+    }
+  };
+
+  // ============================================================
+  // 12. SECTION 13: SAVE THE DATE & CALENDAR MODAL
+  // ============================================================
+  const CalendarModule = {
+    init() {
+      const btnOpen = document.getElementById('btnOpenCalendar');
+      const btnClose = document.getElementById('btnCloseModal');
+      const modal = document.getElementById('calendarModal');
+      const card = document.getElementById('calModalCard');
+      const btnShare = document.getElementById('btnShareInvite');
+
+      if (!btnOpen || !modal) return;
+
+      const openModal = () => {
+        modal.classList.remove('pointer-events-none');
+        modal.classList.add('opacity-100');
+        card.classList.remove('translate-y-full', 'sm:translate-y-8');
+        card.classList.add('translate-y-0');
+      };
+
+      const closeModal = () => {
+        modal.classList.remove('opacity-100');
+        card.classList.remove('translate-y-0');
+        card.classList.add('translate-y-full', 'sm:translate-y-8');
+        setTimeout(() => modal.classList.add('pointer-events-none'), 300);
+      };
+
+      btnOpen.addEventListener('click', openModal);
+      if (btnClose) btnClose.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+      });
+
+      // Bind Google Calendar URLs
+      const fatiha = CONFIG.events.find(e => e.id === 'fatiha');
+      const fatihaGoogleLink = document.getElementById('btnFatihaGoogle');
+      if (fatihaGoogleLink && fatiha) {
+        fatihaGoogleLink.href = Utils.buildGoogleCalUrl(
+          'Wedding Fatiha: Al-Amin & Aisha',
+          fatiha.startUtc,
+          fatiha.endUtc,
+          'Wedding Fatiha of Al-Amin Kabir Usman and Aisha Muhammad Abdullah.',
+          fatiha.venue
+        );
+      }
+
+      // Individual links for All 5
+      CONFIG.events.forEach(ev => {
+        const link = document.getElementById('gLink' + ev.id.charAt(0).toUpperCase() + ev.id.slice(1));
+        if (link) {
+          link.href = Utils.buildGoogleCalUrl(
+            `${ev.title}: Al-Amin & Aisha`,
+            ev.startUtc,
+            ev.endUtc,
+            `Wedding celebration for Al-Amin Kabir Usman & Aisha Muhammad Abdullah.`,
+            ev.venue
+          );
+        }
+      });
+
+      // Download .ics handlers
+      const btnFatihaIcs = document.getElementById('btnFatihaIcs');
+      if (btnFatihaIcs) {
+        btnFatihaIcs.addEventListener('click', () => {
+          this.downloadIcs([fatiha], 'AlAmin-and-Aisha-Wedding-Fatiha.ics');
+          Utils.toast('Wedding Fatiha calendar downloaded!');
+          closeModal();
+        });
+      }
+
+      const btnAllIcs = document.getElementById('btnAllIcs');
+      if (btnAllIcs) {
+        btnAllIcs.addEventListener('click', () => {
+          this.downloadIcs(CONFIG.events, 'AlAmin-and-Aisha-Wedding-All-Events.ics');
+          Utils.toast('All 5 events calendar downloaded!');
+          closeModal();
+        });
+      }
+
+      // Share Invite handler
+      if (btnShare) {
+        btnShare.addEventListener('click', async () => {
+          const shareText = `You are cordially invited to the wedding Fatiha of Al-Amin Kabir Usman and Aisha Muhammad Abdullah - Friday, 25th December 2026, Masjid Banu Coomasie, GRA, Katsina. View invitation: ${window.location.href}`;
+          if (navigator.share) {
+            try {
+              await navigator.share({
+                title: 'Al-Amin & Aisha — Royal Wedding Invitation',
+                text: shareText,
+                url: window.location.href
+              });
+            } catch (err) {}
+          } else {
+            window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, '_blank', 'noopener');
+          }
+        });
+      }
+    },
+
+    downloadIcs(eventsList, filename) {
+      const now = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+      const lines = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Al-Amin & Aisha Royal Wedding//EN',
+        'CALSCALE:GREGORIAN',
+        'METHOD:PUBLISH'
+      ];
+
+      eventsList.forEach((ev, idx) => {
+        lines.push(
+          'BEGIN:VEVENT',
+          `UID:wedding-alamin-aisha-${ev.id}-${idx}@royalwedding.ng`,
+          `DTSTAMP:${now}`,
+          `DTSTART:${ev.startUtc}`,
+          `DTEND:${ev.endUtc}`,
+          `SUMMARY:${ev.title} - Al-Amin & Aisha`,
+          `LOCATION:${ev.venue}`,
+          `DESCRIPTION:Royal wedding celebration for Al-Amin Kabir Usman and Aisha Muhammad Abdullah. Venue: ${ev.venue}`,
+          'BEGIN:VALARM',
+          'TRIGGER:-P7D',
+          'ACTION:DISPLAY',
+          'DESCRIPTION:Wedding event reminder (7 days away)',
+          'END:VALARM',
+          'BEGIN:VALARM',
+          'TRIGGER:-P1D',
+          'ACTION:DISPLAY',
+          'DESCRIPTION:Wedding event reminder (Tomorrow!)',
+          'END:VALARM',
+          'END:VEVENT'
+        );
+      });
+
+      lines.push('END:VCALENDAR');
+      const blob = new Blob([lines.join('\r\n')], { type: 'text/calendar;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 10000);
+    }
+  };
+
+  // ============================================================
+  // 13. SECTION 14: RSVP & WHATSAPP DISPATCH
+  // ============================================================
+  const RSVPModule = {
+    init() {
+      const form = document.getElementById('rsvpForm');
+      const guestsWrapper = document.getElementById('guestsWrapper');
+      const thanks = document.getElementById('rsvpThankYou');
+      const btnWaReopen = document.getElementById('btnWaReopen');
+      const btnCopy = document.getElementById('btnCopyRsvp');
+
+      if (!form) return;
+
+      form.addEventListener('change', (e) => {
+        if (e.target.name === 'attending') {
+          if (e.target.value === 'yes') {
+            guestsWrapper.style.display = 'block';
+            document.getElementById('rsvpGuests').required = true;
+          } else {
+            guestsWrapper.style.display = 'none';
+            document.getElementById('rsvpGuests').required = false;
+          }
+        }
+      });
+
+      let latestMessage = '';
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('rsvpName').value.trim();
+        const attending = form.elements['attending'].value === 'yes' ? 'Yes (Joyfully accepts)' : 'No (Regretfully declines)';
+        const guests = form.elements['attending'].value === 'yes' ? document.getElementById('rsvpGuests').value : '0';
+        const msg = document.getElementById('rsvpMessage').value.trim();
+
+        latestMessage = `Assalamu alaikum. RSVP for the royal wedding of Al-Amin & Aisha.\nName: ${name}\nAttending: ${attending}\nGuests: ${guests}${msg ? `\nMessage: ${msg}` : ''}`;
+        const waUrl = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(latestMessage)}`;
+
+        window.open(waUrl, '_blank', 'noopener');
+        if (btnWaReopen) btnWaReopen.href = waUrl;
+
+        gsap.to(form, {
+          opacity: 0,
+          y: -15,
+          duration: 0.4,
+          onComplete: () => {
+            form.classList.add('hidden');
+            thanks.classList.remove('hidden');
+            gsap.fromTo(thanks, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5 });
+            
+            const circle = document.getElementById('checkCircle');
+            const tick = document.getElementById('checkTick');
+            if (circle) circle.style.strokeDashoffset = '0';
+            if (tick) tick.style.strokeDashoffset = '0';
+          }
+        });
+      });
+
+      if (btnCopy) {
+        btnCopy.addEventListener('click', () => {
+          if (navigator.clipboard) {
+            navigator.clipboard.writeText(latestMessage).then(() => {
+              Utils.toast('RSVP message copied to clipboard!');
+            });
+          }
+        });
+      }
+    }
+  };
+
+  // ============================================================
+  // 14. SECTION 15: CLOSING & TERMINAL FADE TO BLACK
+  // ============================================================
+  const ClosingModule = {
+    init() {
+      ScrollTrigger.create({
+        trigger: '#blessing',
+        start: 'top 50%',
+        end: 'bottom bottom',
+        scrub: true,
+        onUpdate: (self) => {
+          const opacity = Utils.clamp((self.progress - 0.65) / 0.35, 0, 1);
+          gsap.set('#terminalBlackScrim', { opacity });
+        }
+      });
+
+      ScrollTrigger.create({
+        trigger: document.documentElement,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.3,
+        onUpdate: (self) => {
+          const bar = document.getElementById('progressBar');
+          if (bar) bar.style.height = `${self.progress * 100}%`;
+        }
+      });
+    }
+  };
+
+  // ============================================================
+  // 15. CHROMA KEY LIFE CYCLE OBSERVERS
+  // ============================================================
+  const MediaLifecycle = {
+    init() {
+      ChromaKey.setup(
+        'rings',
+        document.getElementById('ringsVideo'),
+        document.getElementById('ringsCanvas'),
+        CONFIG.chroma.rings,
+        true
+      );
+
+      ChromaKey.setup(
+        'doves',
+        document.getElementById('dovesVideo'),
+        document.getElementById('dovesCanvas'),
+        CONFIG.chroma.doves,
+        false
+      );
+
+      const ringObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) ChromaKey.start('rings');
+          else ChromaKey.stop('rings');
+        });
+      }, { rootMargin: '100px' });
+      const ringSec = document.getElementById('rings');
+      if (ringSec) ringObserver.observe(ringSec);
+
+      const dovesObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) ChromaKey.start('doves');
+          else ChromaKey.stop('doves');
+        });
+      }, { rootMargin: '100px' });
+      const dovesSec = document.getElementById('doves');
+      if (dovesSec) dovesObserver.observe(dovesSec);
+    }
+  };
+
+  // ============================================================
+  // 16. MAIN APPLICATION BOOTSTRAP
+  // ============================================================
+  function boot() {
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+    AudioModule.init();
+    FloatingDust.init();
+    Entrance.init();
+    Countdown.init();
+    Curtains.init();
+    DovesInk.init();
+    WalimaArt.init();
+    CalendarModule.init();
+    RSVPModule.init();
+    ClosingModule.init();
+
+    ThreeFountain.init();
+    MediaLifecycle.init();
+
+    if (document.fonts) {
+      document.fonts.ready.then(() => ScrollTrigger.refresh());
+    }
+    window.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
+    window.addEventListener('resize', () => ScrollTrigger.refresh(), { passive: true });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot, { once: true });
+  } else {
+    boot();
+  }
+
+})();
+</script>
+</body>
+</html>
