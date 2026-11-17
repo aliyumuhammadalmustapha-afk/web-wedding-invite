@@ -646,7 +646,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
       <div id="namesContent" class="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-6 pointer-events-none opacity-0 transition-opacity duration-1000">
         <p class="font-cinzel text-xs tracking-[0.4em] uppercase text-white/80 mb-6 font-semibold">The Royal Union</p>
         <h1 class="font-cinzel text-3xl md:text-5xl text-white font-bold leading-tight mb-3 tracking-wide">
-          Al-Amin Kabir Usman
+          Ahmad
         </h1>
         <div class="flex items-center justify-center gap-4 my-4 text-[#C5A059]">
           <span class="w-16 h-[1px] bg-gradient-to-r from-transparent to-[#C5A059]"></span>
@@ -1689,11 +1689,17 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
     opened: false,
 
     init() {
+      // Initialize doors safely
       const tapZone = document.getElementById('entranceTapZone');
       if (!tapZone) return;
 
+      // Ensure body is locked initially
+      document.body.classList.add('locked');
+      // Ensure entrance is visible
+      gsap.set('#entrance', { visibility: 'visible', opacity: 1 });
+
       const triggerOpen = () => {
-        console.log("Triggering door open...");
+        if (this.opened) return;
         this.openDoors();
       };
 
@@ -1849,22 +1855,16 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
         if (this.opened) return;
         this.opened = true;
 
-        gsap.to(left, {
-          xPercent: -102,
-          duration: 3.2,
-          ease: 'power2.inOut'
+        // Force both to open together
+        gsap.to([left, right], {
+          xPercent: (i) => (i === 0 ? -105 : 105),
+          duration: 3.5,
+          ease: 'power3.inOut'
         });
-        gsap.to(right, {
-          xPercent: 102,
-          duration: 3.2,
-          ease: 'power2.inOut',
-          onComplete: () => {
-            gsap.set([left, right], { display: 'none' });
-          }
-        });
+        
         // Reveal names
         if (names) {
-            gsap.to(names, { opacity: 1, duration: 1.5, delay: 0.5 });
+            gsap.to(names, { opacity: 1, duration: 1.5, delay: 1.0 });
         }
       };
 
