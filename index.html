@@ -486,7 +486,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
           <!-- Couple Names -->
           <div id="monogram" class="flex flex-col items-center justify-center w-full gap-1">
             <h1 class="font-alex text-3xl md:text-4xl text-[#1A1A1A] leading-tight font-bold">
-              Al-Amin
+              Ahmad
             </h1>
             <span class="font-cinzel text-sm text-[#1A1A1A] uppercase tracking-[0.3em] my-1 font-bold">and</span>
             <h1 class="font-alex text-3xl md:text-4xl text-[#1A1A1A] leading-tight font-bold">
@@ -543,7 +543,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 
       <p class="font-cinzel text-xs md:text-sm tracking-[0.3em] uppercase text-bronze mb-2">The Anticipation</p>
       <h2 class="font-cinzel text-3xl md:text-5xl font-bold tracking-wide text-ink mb-2">The Journey Begins In</h2>
-      <p class="font-script text-2xl md:text-4xl text-bronze mb-10">…the wedding Fatiha of Al-Amin &amp; Aisha</p>
+      <p class="font-script text-2xl md:text-4xl text-bronze mb-10">…the wedding Fatiha of Ahmad &amp; Aisha</p>
 
       <!-- 4-Column Plaque Grid -->
       <div id="countdownGrid" class="grid grid-cols-4 gap-3 sm:gap-6 max-w-2xl mx-auto my-8">
@@ -588,7 +588,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
       </p>
 
       <div class="bond-line my-3">
-        <h3 class="font-cormorant italic text-3xl sm:text-4xl md:text-5xl font-light text-ivory">Alh. Kabir Usman</h3>
+        <h3 class="font-cormorant italic text-3xl sm:text-4xl md:text-5xl font-light text-ivory">Alh. Muhammad Usman</h3>
         <p class="font-cormorant italic text-lg sm:text-xl text-goldlight/90 my-2">&amp;</p>
         <h3 class="font-cormorant italic text-3xl sm:text-4xl md:text-5xl font-light text-ivory">Alh. Muhammad Abdullah</h3>
       </div>
@@ -992,7 +992,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
           Friday, 25th December 2026
         </p>
         <p class="font-cormorant italic text-lg sm:text-xl text-goldlight/90 mb-8">
-          Wedding Fatiha · Al-Amin &amp; Aisha
+          Wedding Fatiha · Ahmad &amp; Aisha
         </p>
 
         <!-- Primary Add to Calendar Button -->
@@ -1168,7 +1168,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 
       <div class="space-y-2 mt-4">
         <p class="font-script text-3xl sm:text-4xl text-gold-metal">
-          With love, the families of Kabir Usman &amp; Muhammad Abdullah
+          With love, the families of Muhammad Usman &amp; Muhammad Abdullah
         </p>
         <p class="font-cinzel text-xs tracking-[0.3em] uppercase text-goldlight/70 pt-2">
           Barakallahu lakuma
@@ -1790,7 +1790,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
         ease: 'power2.out'
       }, 1.0);
 
-      // Al-Amin & Aisha
+      // Ahmad & Aisha
       tl.to('#monogram', {
         opacity: 1,
         duration: 1.0,
@@ -1988,10 +1988,10 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
       const fatihaGoogleLink = document.getElementById('btnFatihaGoogle');
       if (fatihaGoogleLink && fatiha) {
         fatihaGoogleLink.href = Utils.buildGoogleCalUrl(
-          'Wedding Fatiha: Al-Amin & Aisha',
+          'Wedding Fatiha: Ahmad & Aisha',
           fatiha.startUtc,
           fatiha.endUtc,
-          'Wedding Fatiha of Al-Amin Kabir Usman and Aisha Muhammad Abdullah.',
+          'Wedding Fatiha of Ahmad Muhammad and Aisha Muhammad Abdullah.',
           fatiha.venue
         );
       }
@@ -2001,10 +2001,10 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
         const link = document.getElementById('gLink' + ev.id.charAt(0).toUpperCase() + ev.id.slice(1));
         if (link) {
           link.href = Utils.buildGoogleCalUrl(
-            `${ev.title}: Al-Amin & Aisha`,
+            `${ev.title}: Ahmad & Aisha`,
             ev.startUtc,
             ev.endUtc,
-            `Wedding celebration for Al-Amin Kabir Usman & Aisha Muhammad Abdullah.`,
+            `Wedding celebration for Ahmad Muhammad & Aisha Muhammad Abdullah.`,
             ev.venue
           );
         }
@@ -2032,11 +2032,11 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
       // Share Invite handler
       if (btnShare) {
         btnShare.addEventListener('click', async () => {
-          const shareText = `You are cordially invited to the wedding Fatiha of Al-Amin Kabir Usman and Aisha Muhammad Abdullah - Friday, 25th December 2026, Masjid Banu Coomasie, GRA, Katsina. View invitation: ${window.location.href}`;
+          const shareText = `You are cordially invited to the wedding Fatiha of Ahmad Muhammad and Aisha Muhammad Abdullah - Friday, 25th December 2026, Masjid Banu Coomasie, GRA, Katsina. View invitation: ${window.location.href}`;
           if (navigator.share) {
             try {
               await navigator.share({
-                title: 'Al-Amin & Aisha — Royal Wedding Invitation',
+                title: 'Ahmad & Aisha — Royal Wedding Invitation',
                 text: shareText,
                 url: window.location.href
               });
@@ -2053,7 +2053,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
       const lines = [
         'BEGIN:VCALENDAR',
         'VERSION:2.0',
-        'PRODID:-//Al-Amin & Aisha Royal Wedding//EN',
+        'PRODID:-//Ahmad & Aisha Royal Wedding//EN',
         'CALSCALE:GREGORIAN',
         'METHOD:PUBLISH'
       ];
@@ -2065,9 +2065,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
           `DTSTAMP:${now}`,
           `DTSTART:${ev.startUtc}`,
           `DTEND:${ev.endUtc}`,
-          `SUMMARY:${ev.title} - Al-Amin & Aisha`,
+          `SUMMARY:${ev.title} - Ahmad & Aisha`,
           `LOCATION:${ev.venue}`,
-          `DESCRIPTION:Royal wedding celebration for Al-Amin Kabir Usman and Aisha Muhammad Abdullah. Venue: ${ev.venue}`,
+          `DESCRIPTION:Royal wedding celebration for Ahmad Muhammad and Aisha Muhammad Abdullah. Venue: ${ev.venue}`,
           'BEGIN:VALARM',
           'TRIGGER:-P7D',
           'ACTION:DISPLAY',
@@ -2129,7 +2129,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
         const guests = form.elements['attending'].value === 'yes' ? document.getElementById('rsvpGuests').value : '0';
         const msg = document.getElementById('rsvpMessage').value.trim();
 
-        latestMessage = `Assalamu alaikum. RSVP for the royal wedding of Al-Amin & Aisha.\nName: ${name}\nAttending: ${attending}\nGuests: ${guests}${msg ? `\nMessage: ${msg}` : ''}`;
+        latestMessage = `Assalamu alaikum. RSVP for the royal wedding of Ahmad & Aisha.\nName: ${name}\nAttending: ${attending}\nGuests: ${guests}${msg ? `\nMessage: ${msg}` : ''}`;
         const waUrl = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(latestMessage)}`;
 
         window.open(waUrl, '_blank', 'noopener');
