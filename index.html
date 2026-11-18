@@ -1697,6 +1697,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
       document.body.classList.add('locked');
       // Ensure entrance is visible
       gsap.set('#entrance', { visibility: 'visible', opacity: 1 });
+      // Reset scroll position on load
+      window.history.scrollRestoration = 'manual';
+      window.scrollTo(0, 0);
 
       const triggerOpen = () => {
         if (this.opened) return;
